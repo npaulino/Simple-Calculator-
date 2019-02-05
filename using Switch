@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Simple_Calculator
+{
+    class Program
+    {
+        
+        static  void Total(int n)
+        {
+            int results = n;
+            Console.WriteLine($"Is Equal to: {n}", results);
+        }
+
+        private static string Calculate(int firstNumber, int secondNumber, string operation)
+        {
+            int answer = 0;
+            
+            // Switch statement instead of IF statement
+            switch (operation)
+            {
+                case "*":
+                    answer = firstNumber * secondNumber;
+                    Total(answer);
+                    break;
+                case "/":
+                    answer = firstNumber / secondNumber;
+                    Total(answer);
+                    break;
+                case "+":
+                    answer = firstNumber + secondNumber;
+                    Total(answer);
+                    break;
+                case "-":
+                    answer = firstNumber - secondNumber;
+                    Total(answer);
+                    break;
+                default:
+                    return "Please try again!";
+                    
+            }
+            return new StringBuilder(firstNumber + operation + secondNumber + " = " + answer).ToString();
+        }
+
+
+        static void Main(string[] args)
+        {
+            int x, y;
+            bool exit = false;
+            string tryAgain;
+
+            do
+            {
+                Console.Write("Enter First Number: ");
+                x = Convert.ToInt16(Console.ReadLine());
+                Console.Write("Enter Second Number: ");
+                y = Convert.ToInt16(Console.ReadLine());
+                Console.Write("Enter Operation: ");
+                Calculate(x, y, Console.ReadLine());
+                
+                Console.Write("Would you like to exit: y/n ");
+                tryAgain = Console.ReadLine();
+
+                if (tryAgain == "y")
+                {
+                    exit = true;
+                }
+                else
+                    exit = false;
+            } while (!exit);
+        }
+    }
+}
